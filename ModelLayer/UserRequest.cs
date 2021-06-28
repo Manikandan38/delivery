@@ -71,5 +71,18 @@ namespace DeliveryBookingAPI.ModelLayer
                 }
             }
         }
+
+        public UserRequest()
+        {
+
+        }
+
+        public UserRequest(int id, DateTime dt, double weight, string address)
+        {
+            RequestID = id;
+            DTofPickup = dt;
+            WeightOfPackage = weight;
+            Address = address;
+        }
     }
 }

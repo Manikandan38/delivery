@@ -15,7 +15,21 @@ namespace DeliveryBookingAPI.ModelLayer
         [Required]
         [MinLength(length: 3, ErrorMessage = "*Atleast have 3 characters.")]
         [MaxLength(length: 20, ErrorMessage = "*Only 20 characters allowed.")]
-        [Display(Name = "User Name")]
+        
         public string CityName { get; set; }
+
+        public City()
+        {
+
+        }
+
+        public City( int id, string name)
+        {
+            CityID = id;
+            CityName = name;
+        }
     }
+
+    
+
 }

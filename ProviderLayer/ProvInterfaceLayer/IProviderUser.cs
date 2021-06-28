@@ -8,11 +8,11 @@ namespace DeliveryBookingAPI.ProviderLayer.ProvInterfaceLayer
 {
     public interface IProviderUser
     {
-        public UserDetail AddNewUser(UserDetail C);
-        public void DeleteUser(int id);
+        public bool AddNewUser(UserDetail C);
+        public bool DeleteUser(int id);
         public UserDetail GetUserByID(int id);
         public List<UserDetail> GetAllUser();
-        public UserDetail UpdateUser(int id, UserDetail C);
+        public bool UpdateUser(int id, UserDetail C);
         public bool UserExists(int id);
     }
 }

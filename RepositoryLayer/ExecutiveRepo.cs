@@ -22,21 +22,39 @@ namespace DeliveryBookingAPI.RepositoryLayer
             _context = context;
         }
 
-        public ExecutiveDetail AddNewExecutive(ExecutiveDetail E)
+        public bool AddNewExecutive(ExecutiveDetail E)
         {
-            E.IsVerified = true;
+            try
+            {
+                E.IsVerified = true;
 
-            _context.ExecutiveDetail.Add(E);
-            _context.SaveChanges();
-            return E;
+                _context.ExecutiveDetail.Add(E);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
         }
 
 
-        public void DeleteExecutive(int id)
+        public bool DeleteExecutive(int id)
         {
-            ExecutiveDetail E = _context.ExecutiveDetail.Find(id);
-            _context.ExecutiveDetail.Remove(E);
-            _context.SaveChanges();
+            try
+            {
+                ExecutiveDetail E = _context.ExecutiveDetail.Find(id);
+                _context.ExecutiveDetail.Remove(E);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
         public ExecutiveDetail GetExecutiveByID(int id)
@@ -50,12 +68,21 @@ namespace DeliveryBookingAPI.RepositoryLayer
         }
 
 
-        public ExecutiveDetail UpdateExecutive(int id, ExecutiveDetail E)
+        public bool UpdateExecutive(int id, ExecutiveDetail E)
         {
-            E.ExecutiveID = id;
-            _context.Update(E);
-            _context.SaveChanges();
-            return E;
+            try
+            {
+                E.ExecutiveID = id;
+                _context.Update(E);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
         }
 
         public bool ExecutiveExists(int id)

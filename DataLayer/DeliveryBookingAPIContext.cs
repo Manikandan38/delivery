@@ -24,7 +24,10 @@ namespace DeliveryBookingAPI.DataLayer
 
         public DbSet<DeliveryBookingAPI.ModelLayer.UserRequest> UserRequest { get; set; }
 
-        public DbSet<DeliveryBookingAPI.ModelLayer.Response> Response { get; set; }
+        public DbSet<DeliveryBookingAPI.ModelLayer.EResponse> EResponse { get; set; }
+
+
+        //public DbSet<DeliveryBookingAPI.ModelLayer.Response> Response { get; set; }
 
         //public DbSet<DeliveryBookingAPI.ModelLayer.ExecutiveResponse> ExecutiveResponses { get; set; }
         

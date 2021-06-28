@@ -7,24 +7,31 @@ using System.Threading.Tasks;
 
 namespace DeliveryBookingAPI.ModelLayer
 {
-    public class Response
+    public class EResponse
     {
         [Key]
         public int ResponseID { get; set; }
 
-        public AcceptReject status { get; set; }
+        public bool status { get; set; }
 
         public double Price { get; set; }
 
-        [ForeignKey("UserRequest"), Column(Order = 0)]
-        public int? RequestID { get; set; }
-        public UserRequest UserRequest { get; set; }
+        public int RequestID { get; set; }
 
 
-        public enum AcceptReject
+        public EResponse()
         {
-            Accept,
-            Reject
+
         }
+
+        public EResponse(int id, bool sts, double price, int reqid)
+        {
+            ResponseID = id;
+            status = sts;
+            Price = price;
+            RequestID = reqid;
+        }
+
     }
+
 }

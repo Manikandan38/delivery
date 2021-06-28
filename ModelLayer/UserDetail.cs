@@ -45,5 +45,18 @@ namespace DeliveryBookingAPI.ModelLayer
         public City City { get; set; }
 
         public bool IsVerified { get; set; }
+
+        public UserDetail()
+        {
+
+        }
+
+        public UserDetail(int id, string uname, string pass, int age)
+        {
+            UserID = id;
+            UserName = uname;
+            Password = pass;
+            Age = age;
+        }
     }
 }

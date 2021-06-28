@@ -22,21 +22,39 @@ namespace DeliveryBookingAPI.RepositoryLayer
             _context = context;
         }
 
-        public UserDetail AddNewUser(UserDetail U)
+        public bool AddNewUser(UserDetail U)
         {
-            U.IsVerified = true;
+            try
+            {
+                U.IsVerified = true;
 
-            _context.UserDetail.Add(U);
-            _context.SaveChanges();
-            return U;
+                _context.UserDetail.Add(U);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
         }
 
 
-        public void DeleteUser(int id)
+        public bool DeleteUser(int id)
         {
-            UserDetail U = _context.UserDetail.Find(id);
-            _context.UserDetail.Remove(U);
-            _context.SaveChanges();
+            try
+            {
+                UserDetail U = _context.UserDetail.Find(id);
+                _context.UserDetail.Remove(U);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
         public UserDetail GetUserByID(int id)
@@ -50,12 +68,20 @@ namespace DeliveryBookingAPI.RepositoryLayer
         }
 
 
-        public UserDetail UpdateUser(int id, UserDetail U)
+        public bool UpdateUser(int id, UserDetail U)
         {
-            U.UserID = id;
-            _context.Update(U);
-            _context.SaveChanges();
-            return U;
+            try
+            {
+                U.UserID = id;
+                _context.Update(U);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
         public bool UserExists(int id)

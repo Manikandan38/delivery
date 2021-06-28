@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DeliveryBookingAPI.RepositoryLayer
 {
-    public class ResponseRepo : IResponse
+    public class ResponseRepo : IEResponse
     {
 
         private readonly DeliveryBookingAPIContext _context;
@@ -23,43 +23,69 @@ namespace DeliveryBookingAPI.RepositoryLayer
             _context = context;
         }
 
-        public Response AddNewResponse(Response R)
+        public bool AddNewResponse(EResponse R)
         {
 
-            _context.Response.Add(R);
-            _context.SaveChanges();
-            return R;
+            try
+            {
+                _context.EResponse.Add(R);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
 
-        public void DeleteResponse(int id)
+        public bool DeleteResponse(int id)
         {
-            Response R = _context.Response.Find(id);
-            _context.Response.Remove(R);
-            _context.SaveChanges();
+            try
+            {
+                EResponse R = _context.EResponse.Find(id);
+                _context.EResponse.Remove(R);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false; 
+            }
         }
 
-        public Response GetResponseByID(int id)
+        public EResponse GetResponseByID(int id)
         {
-            return (_context.Response.Find(id));
+            return (_context.EResponse.Find(id));
         }
 
-        public List<Response> GetAllResponse()
+        public List<EResponse> GetAllResponse()
         {
-            return _context.Response.ToList();
+            return _context.EResponse.ToList();
         }
 
 
-        public Response UpdateResponse(int id, Response R)
+        public bool UpdateResponse(int id, EResponse R)
         {
-            _context.Update(R);
-            _context.SaveChanges();
-            return R;
+            try
+            {
+                _context.Update(R);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
         }
 
         public bool ResponseExists(int id)
         {
-            return _context.Response.Any(c => c.ResponseID == id);
+            return _context.EResponse.Any(c => c.ResponseID == id);
         }
     }
 }

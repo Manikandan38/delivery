@@ -22,20 +22,37 @@ namespace DeliveryBookingAPI.RepositoryLayer
             _context = context;
         }
 
-        public City AddNewCity(City C)
+        public bool AddNewCity(City C)
         {
-
-            _context.City.Add(C);
-            _context.SaveChanges();
-            return C;
+            try
+            {
+                _context.City.Add(C);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            
         }
 
 
-        public void DeleteCity(int id)
+        public bool DeleteCity(int id)
         {
-            City C = _context.City.Find(id);
-            _context.City.Remove(C);
-            _context.SaveChanges();
+            try
+            {
+                City C = _context.City.Find(id);
+                _context.City.Remove(C);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
         public City GetCityByID(int id)
@@ -49,16 +66,27 @@ namespace DeliveryBookingAPI.RepositoryLayer
         }
 
 
-        public City UpdateCity(int id, City C)
+        public bool UpdateCity(int id, City C)
         {
-            _context.Update(C);
-            _context.SaveChanges();
-            return C;
+            try
+            {
+                _context.Update(C);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
         }
 
         public bool CityExists(int id)
         {
             return _context.City.Any(c => c.CityID == id);
         }
+
+        
     }
 }

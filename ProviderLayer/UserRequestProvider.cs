@@ -22,15 +22,33 @@ namespace DeliveryBookingAPI.ProviderLayer
             _repo = repo;
         }
 
-        public UserRequest AddNewRequest(UserRequest C)
+        public bool AddNewRequest(UserRequest C)
         {
-            _repo.AddNewRequest(C);
-            return C;
+            try
+            {
+                _repo.AddNewRequest(C);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
-        public void DeleteRequest(int id)
+        public bool DeleteRequest(int id)
         {
-            _repo.DeleteRequest(id);
+            try
+            {
+
+                _repo.DeleteRequest(id);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
         public List<UserRequest> GetAllRequest()
@@ -48,9 +66,19 @@ namespace DeliveryBookingAPI.ProviderLayer
             return _repo.RequestExists(id);
         }
 
-        public UserRequest UpdateRequest(int id, UserRequest C)
+        public bool UpdateRequest(int id, UserRequest C)
         {
-            return _repo.UpdateRequest(id, C);
+            try
+            {
+                _repo.UpdateRequest(id, C);
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
     }
 }

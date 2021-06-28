@@ -4,14 +4,16 @@ using DeliveryBookingAPI.DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DeliveryBookingAPI.Migrations
 {
     [DbContext(typeof(DeliveryBookingAPIContext))]
-    partial class DeliveryBookingAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20210622154933_second")]
+    partial class second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,13 +48,15 @@ namespace DeliveryBookingAPI.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("RequestID")
+                    b.Property<int?>("RequestID")
                         .HasColumnType("int");
 
                     b.Property<bool>("status")
                         .HasColumnType("bit");
 
                     b.HasKey("ResponseID");
+
+                    b.HasIndex("RequestID");
 
                     b.ToTable("EResponse");
                 });
@@ -189,6 +193,15 @@ namespace DeliveryBookingAPI.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("UserRequest");
+                });
+
+            modelBuilder.Entity("DeliveryBookingAPI.ModelLayer.EResponse", b =>
+                {
+                    b.HasOne("DeliveryBookingAPI.ModelLayer.UserRequest", "UserRequest")
+                        .WithMany()
+                        .HasForeignKey("RequestID");
+
+                    b.Navigation("UserRequest");
                 });
 
             modelBuilder.Entity("DeliveryBookingAPI.ModelLayer.ExecutiveDetail", b =>

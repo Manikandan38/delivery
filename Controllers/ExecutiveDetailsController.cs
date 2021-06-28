@@ -22,12 +22,16 @@ namespace DeliveryBookingAPI.Controllers
             _exec = context;
         }
 
+
+
         // GET: api/ExecutiveDetails
         [HttpGet]
         public List<ExecutiveDetail> GetAllExecutive()
         {
             return _exec.GetAllExecutive();
         }
+
+
 
         // GET: api/ExecutiveDetails/5
         [HttpGet("{id}")]
@@ -36,8 +40,10 @@ namespace DeliveryBookingAPI.Controllers
             return _exec.GetExecutiveByID(id);
         }
 
+
+
+
         // PUT: api/ExecutiveDetails/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public IActionResult PutExecutiveDetail(int id, ExecutiveDetail executiveDetail)
         {
@@ -60,21 +66,39 @@ namespace DeliveryBookingAPI.Controllers
             return NoContent();
         }
 
+
+
+
         // POST: api/ExecutiveDetails
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public ActionResult<ExecutiveDetail> PostExecutiveDetail(ExecutiveDetail executiveDetail)
         {
-            _exec.AddNewExecutive(executiveDetail);
+            try
+            {
+                _exec.AddNewExecutive(executiveDetail);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             return CreatedAtAction("GetExecutiveByID", new { id = executiveDetail.ExecutiveID }, executiveDetail);
         }
+
+
 
         // DELETE: api/ExecutiveDetails/5
         [HttpDelete("{id}")]
         public IActionResult DeleteExecutiveDetail(int id)
         {
-            _exec.DeleteExecutive(id);
+            try
+            {
+                _exec.DeleteExecutive(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             return NoContent();
         }

@@ -44,7 +44,7 @@ namespace DeliveryBookingAPI
             services.AddScoped<IRequest, RequestRepo>();
             services.AddScoped<IProviderRequest, UserRequestProvider>();
 
-            services.AddScoped<IResponse, ResponseRepo>();
+            services.AddScoped<IEResponse, ResponseRepo>();
             services.AddScoped<IProviderResponse, ExecutiveResponseProvider>();
 
             services.AddControllers();

@@ -22,12 +22,15 @@ namespace DeliveryBookingAPI.Controllers
             _user = context;
         }
 
+
         // GET: api/ExecutiveDetails
         [HttpGet]
         public List<UserDetail> GetAllUser()
         {
             return _user.GetAllUser();
         }
+
+
 
         // GET: api/ExecutiveDetails/5
         [HttpGet("{id}")]
@@ -36,8 +39,9 @@ namespace DeliveryBookingAPI.Controllers
             return _user.GetUserByID(id);
         }
 
+
+
         // PUT: api/ExecutiveDetails/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public IActionResult PutUserDetail(int id, UserDetail userdetail)
         {
@@ -60,21 +64,38 @@ namespace DeliveryBookingAPI.Controllers
             return NoContent();
         }
 
+
+
         // POST: api/ExecutiveDetails
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public ActionResult<UserDetail> PostUserDetail(UserDetail userdetail)
         {
-            _user.AddNewUser(userdetail);
+            try
+            {
+                _user.AddNewUser(userdetail);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             return CreatedAtAction("GetUserByID", new { id = userdetail.UserID }, userdetail);
         }
+
+
 
         // DELETE: api/ExecutiveDetails/5
         [HttpDelete("{id}")]
         public IActionResult DeleteUserDetail(int id)
         {
-            _user.DeleteUser(id);
+            try
+            {
+                _user.DeleteUser(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             return NoContent();
         }

@@ -11,35 +11,53 @@ namespace DeliveryBookingAPI.ProviderLayer
 {
     public class ExecutiveResponseProvider : IProviderResponse
     {
-        private readonly IResponse _repo;
+        private readonly IEResponse _repo;
 
         public ExecutiveResponseProvider()
         {
 
         }
 
-        public ExecutiveResponseProvider(IResponse repo)
+        public ExecutiveResponseProvider(IEResponse repo)
         {
             _repo = repo;
         }
 
-        public Response AddNewResponse(Response C)
+        public bool AddNewResponse(EResponse C)
         {
-            _repo.AddNewResponse(C);
-            return C;
+            try
+            {
+                _repo.AddNewResponse(C);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
-        public void DeleteResponse(int id)
+        public bool DeleteResponse(int id)
         {
-            _repo.DeleteResponse(id);
+            try
+            {
+                _repo.DeleteResponse(id);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
-        public List<Response> GetAllResponse()
+        public List<EResponse> GetAllResponse()
         {
             return _repo.GetAllResponse();
         }
 
-        public Response GetResponseByID(int id)
+        public EResponse GetResponseByID(int id)
         {
             return _repo.GetResponseByID(id);
         }
@@ -49,10 +67,18 @@ namespace DeliveryBookingAPI.ProviderLayer
             return _repo.ResponseExists(id);
         }
 
-        public Response UpdateResponse(int id, Response C)
+        public bool UpdateResponse(int id, EResponse C)
         {
-            _repo.UpdateResponse(id, C);
-            return C;
+            try
+            {
+                _repo.UpdateResponse(id, C);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
     }
 }

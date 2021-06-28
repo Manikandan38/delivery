@@ -8,11 +8,11 @@ namespace DeliveryBookingAPI.ProviderLayer.ProvInterfaceLayer
 {
     public interface IProviderCity
     {
-        public City AddNewCity(City C);
-        public void DeleteCity(int id);
+        public bool AddNewCity(City C);
+        public bool DeleteCity(int id);
         public City GetCityByID(int id);
         public List<City> GetAllCity();
-        public City UpdateCity(int id, City C);
+        public bool UpdateCity(int id, City C);
         public bool CityExists(int id);
     }
 }

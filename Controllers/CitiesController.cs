@@ -22,12 +22,15 @@ namespace DeliveryBookingAPI.Controllers
             _city = context;
         }
 
+
         // GET: api/Cities
         [HttpGet]
         public List<City> GetAllCity()
         {
             return _city.GetAllCity();
         }
+
+
 
         // GET: api/Cities/5
         [HttpGet("{id}")]
@@ -36,8 +39,10 @@ namespace DeliveryBookingAPI.Controllers
             return _city.GetCityByID(id);
         }
 
+
+
+
         // PUT: api/Cities/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public IActionResult PutCity(int id, City city)
         {
@@ -60,22 +65,44 @@ namespace DeliveryBookingAPI.Controllers
             return NoContent();
         }
 
+
+
+
         // POST: api/Cities
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public ActionResult<City> PostCity(City city)
         {
-            _city.AddNewCity(city);
+            try
+            {
+                _city.AddNewCity(city);
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
 
             return CreatedAtAction("GetCityByID", new { id = city.CityID }, city);
         }
+
+
 
         // DELETE: api/Cities/5
         [HttpDelete("{id}")]
         public IActionResult DeleteCity(int id)
         {
-            _city.DeleteCity(id);
+            try
+            {
+                _city.DeleteCity(id);
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
             return NoContent();
         }
+
+
     }
 }

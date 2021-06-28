@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DeliveryBookingAPI.ProviderLayer.ProvInterfaceLayer
+namespace DeliveryBookingAPI.RepositoryLayer.RepoInterfaceLayer
 {
-    public interface IProviderResponse
+    public interface IEResponse
     {
         public bool AddNewResponse(EResponse C);
         public bool DeleteResponse(int id);

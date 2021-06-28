@@ -22,19 +22,37 @@ namespace DeliveryBookingAPI.RepositoryLayer
             _context = context;
         }
 
-        public UserRequest AddNewRequest(UserRequest R)
+        public bool AddNewRequest(UserRequest R)
         {
-            _context.UserRequest.Add(R);
-            _context.SaveChanges();
-            return R;
+            try
+            {
+                _context.UserRequest.Add(R);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
         }
 
 
-        public void DeleteRequest(int id)
+        public bool DeleteRequest(int id)
         {
-            UserRequest R = _context.UserRequest.Find(id);
-            _context.UserRequest.Remove(R);
-            _context.SaveChanges();
+            try
+            {
+                UserRequest R = _context.UserRequest.Find(id);
+                _context.UserRequest.Remove(R);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
         public UserRequest GetRequestByID(int id)
@@ -43,17 +61,25 @@ namespace DeliveryBookingAPI.RepositoryLayer
         }
 
         public List<UserRequest> GetAllRequest()
-        {   
+        {
             return _context.UserRequest.ToList();
         }
 
 
-        public UserRequest UpdateRequest(int id, UserRequest R)
+        public bool UpdateRequest(int id, UserRequest R)
         {
-            R.RequestID = id;
-            _context.Update(R);
-            _context.SaveChanges();
-            return R;
+            try
+            {
+                R.RequestID = id;
+                _context.Update(R);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
         public bool RequestExists(int id)

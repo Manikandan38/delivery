@@ -8,11 +8,11 @@ namespace DeliveryBookingAPI.RepositoryLayer.RepoInterfaceLayer
 {
     public interface IExecutive
     {
-        public ExecutiveDetail AddNewExecutive(ExecutiveDetail C);
-        public void DeleteExecutive(int id);
+        public bool AddNewExecutive(ExecutiveDetail C);
+        public bool DeleteExecutive(int id);
         public ExecutiveDetail GetExecutiveByID(int id);
         public List<ExecutiveDetail> GetAllExecutive();
-        public ExecutiveDetail UpdateExecutive(int id, ExecutiveDetail C);
+        public bool UpdateExecutive(int id, ExecutiveDetail C);
         public bool ExecutiveExists(int id);
     }
 }

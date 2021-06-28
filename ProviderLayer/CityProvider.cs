@@ -1,4 +1,5 @@
-﻿using DeliveryBookingAPI.ModelLayer;
+﻿using DeliveryBookingAPI.DataLayer;
+using DeliveryBookingAPI.ModelLayer;
 using DeliveryBookingAPI.ProviderLayer.ProvInterfaceLayer;
 using DeliveryBookingAPI.RepositoryLayer.RepoInterfaceLayer;
 using System;
@@ -22,10 +23,18 @@ namespace DeliveryBookingAPI.ProviderLayer
             _repo = repo;
         }
 
-        public City AddNewCity(City C)
+        public bool AddNewCity(City C)
         {
-            _repo.AddNewCity(C);
-            return C;
+            try
+            {
+                _repo.AddNewCity(C);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
         public bool CityExists(int id)
@@ -33,9 +42,19 @@ namespace DeliveryBookingAPI.ProviderLayer
             return _repo.CityExists(id);
         }
 
-        public void DeleteCity(int id)
+        public bool DeleteCity(int id)
         {
-            _repo.DeleteCity(id);
+            try
+            {
+                _repo.DeleteCity(id);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
         public List<City> GetAllCity()
@@ -48,10 +67,20 @@ namespace DeliveryBookingAPI.ProviderLayer
             return _repo.GetCityByID(id);
         }
 
-        public City UpdateCity(int id, City C)
+        public bool UpdateCity(int id, City C)
         {
-            _repo.UpdateCity(id, C);
-            return C;
+            try
+            {
+                _repo.UpdateCity(id, C);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
+
+       
     }
 }

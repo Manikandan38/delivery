@@ -4,14 +4,16 @@ using DeliveryBookingAPI.DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DeliveryBookingAPI.Migrations
 {
     [DbContext(typeof(DeliveryBookingAPIContext))]
-    partial class DeliveryBookingAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20210623143221_third")]
+    partial class third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

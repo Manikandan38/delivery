@@ -22,15 +22,35 @@ namespace DeliveryBookingAPI.ProviderLayer
             _repo = repo;
         }
 
-        public ExecutiveDetail AddNewExecutive(ExecutiveDetail C)
+        public bool AddNewExecutive(ExecutiveDetail C)
         {
-            _repo.AddNewExecutive(C);
-            return C;
+            try
+            {
+                _repo.AddNewExecutive(C);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
         }
 
-        public void DeleteExecutive(int id)
+        public bool DeleteExecutive(int id)
         {
-            _repo.DeleteExecutive(id);
+            try
+            {
+                _repo.DeleteExecutive(id);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
 
         public bool ExecutiveExists(int id)
@@ -48,10 +68,19 @@ namespace DeliveryBookingAPI.ProviderLayer
             return _repo.GetExecutiveByID(id);
         }
 
-        public ExecutiveDetail UpdateExecutive(int id, ExecutiveDetail C)
+        public bool UpdateExecutive(int id, ExecutiveDetail C)
         {
-            _repo.UpdateExecutive(id, C);
-            return C;
+            try
+            {
+                _repo.UpdateExecutive(id, C);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
     }
 }

@@ -22,12 +22,16 @@ namespace DeliveryBookingAPI.Controllers
             _req = context;
         }
 
+
+
         // GET: api/UserRequests
         [HttpGet]
         public List<UserRequest> GetAllRequest()
         {
             return _req.GetAllRequest();
         }
+
+
 
         // GET: api/UserRequests/5
         [HttpGet("{id}")]
@@ -36,8 +40,9 @@ namespace DeliveryBookingAPI.Controllers
             return _req.GetRequestByID(id);
         }
 
+
+        
         // PUT: api/UserRequests/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public IActionResult PutUserRequest(int id, UserRequest userRequest)
         {
@@ -61,21 +66,38 @@ namespace DeliveryBookingAPI.Controllers
             return NoContent();
         }
 
+
+
         // POST: api/UserRequests
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public ActionResult<UserRequest> PostUserRequest(UserRequest userRequest)
         {
-            _req.AddNewRequest(userRequest);
+            try
+            {
+                _req.AddNewRequest(userRequest);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             return CreatedAtAction("GetRequestByID", new { id = userRequest.RequestID }, userRequest);
         }
+
+
 
         // DELETE: api/UserRequests/5
         [HttpDelete("{id}")]
         public IActionResult DeleteUserRequest(int id)
         {
-            _req.DeleteRequest(id);
+            try
+            {
+                _req.DeleteRequest(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return NoContent();
         }
 

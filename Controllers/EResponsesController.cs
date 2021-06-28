@@ -13,33 +13,39 @@ namespace DeliveryBookingAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ResponsesController : ControllerBase
+    public class EResponsesController : ControllerBase
     {
         private readonly IProviderResponse _resp;
 
-        public ResponsesController(IProviderResponse context)
+        public EResponsesController(IProviderResponse context)
         {
             _resp = context;
         }
 
+
+
         // GET: api/Cities
         [HttpGet]
-        public List<Response> GetAllResponse()
+        public List<EResponse> GetAllResponse()
         {
             return _resp.GetAllResponse();
         }
 
+
+
         // GET: api/Cities/5
         [HttpGet("{id}")]
-        public ActionResult<Response> GetResponseByID(int id)
+        public ActionResult<EResponse> GetResponseByID(int id)
         {
             return _resp.GetResponseByID(id);
         }
 
+
+
+
         // PUT: api/Cities/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public IActionResult PutResponse(int id, Response response)
+        public IActionResult PutResponse(int id, EResponse response)
         {
             try
             {
@@ -60,21 +66,39 @@ namespace DeliveryBookingAPI.Controllers
             return NoContent();
         }
 
+
+
         // POST: api/Cities
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public ActionResult<Response> PostResponse(Response response)
+        public ActionResult<EResponse> PostResponse(EResponse response)
         {
-            _resp.AddNewResponse(response);
+            try
+            {
+                _resp.AddNewResponse(response);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             return CreatedAtAction("GetResponseByID", new { id = response.ResponseID }, response);
         }
+
+
 
         // DELETE: api/Cities/5
         [HttpDelete("{id}")]
         public IActionResult DeleteResponse(int id)
         {
-            _resp.DeleteResponse(id);
+            try
+            {
+                _resp.DeleteResponse(id);
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
             return NoContent();
         }
     }
